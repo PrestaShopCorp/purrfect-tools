@@ -1,0 +1,37 @@
+# Metadata
+.idea/
+.history/
+.settings/
+.vscode/
+.DS_Store
+*.code-workspace
+*.launch
+*.sublime-workspace
+
+# Package Manager
+.yarn/
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# Compiled Output
+dist/
+node_modules/
+tsconfig.build.tsbuildinfo
+
+# Environment
+*.env
+*.env.*
+!.env.template
+
+# Logs
+logs/
+*.log
+*.log*
+
+# Tests
+coverage/
+.nyc_output/
