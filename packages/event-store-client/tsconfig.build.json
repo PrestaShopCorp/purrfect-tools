@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.build.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "paths": {
+      "@nestjs-extensions/common": ["../common/src"]
+    }
+  },
+  "references": [
+    {
+      "path": "../common/tsconfig.build.json"
+    }
+  ],
+  "exclude": ["node_modules", "dist", "e2e/**/*", "**/*.spec.ts", "jest.config.ts"]
+}
