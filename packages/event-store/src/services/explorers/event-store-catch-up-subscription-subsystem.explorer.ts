@@ -21,12 +21,27 @@ export class EventStoreCatchUpSubscriptionSubsystemExplorer implements OnModuleI
     EventStoreCatchUpSubscriptionDescriptor
   >[] = [];
 
+  isValidService(instance: EventStoreCatchUpSubscription) {
+    const hasHandleEvent = 'handleEvent' in instance;
+
+    if (!hasHandleEvent) {
+      const serviceName = (instance as unknown).constructor.name;
+      this.logger.warn(
+        `The service '${serviceName}' won't be auto-loaded, '${serviceName}' doesn't implement 'EventStoreCatchUpSubscription' interface properly`,
+      );
+    }
+
+    return hasHandleEvent;
+  }
+
   onModuleInit() {
     this.catchUpSubscriptions.push(
-      ...this.metadataAccessor.mapToMetadataWrapper<
-        EventStoreCatchUpSubscription,
-        EventStoreCatchUpSubscriptionDescriptor
-      >(this.discoveryService.getProviders(), METADATA_CATCH_UP_SUBSCRIPTION),
+      ...this.metadataAccessor
+        .mapToMetadataWrapper<EventStoreCatchUpSubscription, EventStoreCatchUpSubscriptionDescriptor>(
+          this.discoveryService.getProviders(),
+          METADATA_CATCH_UP_SUBSCRIPTION,
+        )
+        .filter(({ instance }) => this.isValidService(instance)),
     );
 
     this.logger.debug(

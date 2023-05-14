@@ -21,12 +21,27 @@ export class EventStorePersistentSubscriptionSubsystemExplorer implements OnModu
     EventStorePersistentSubscriptionDescriptor
   >[] = [];
 
+  isValidService(instance: EventStorePersistentSubscription) {
+    const hasHandleEvent = 'handleEvent' in instance;
+
+    if (!hasHandleEvent) {
+      const serviceName = (instance as unknown).constructor.name;
+      this.logger.warn(
+        `The service '${serviceName}' won't be auto-loaded, '${serviceName}' doesn't implement 'EventStorePersistentSubscription' interface properly.`,
+      );
+    }
+
+    return hasHandleEvent;
+  }
+
   onModuleInit() {
     this.persistentSubscriptions.push(
-      ...this.metadataAccessor.mapToMetadataWrapper<
-        EventStorePersistentSubscription,
-        EventStorePersistentSubscriptionDescriptor
-      >(this.discoveryService.getProviders(), METADATA_PERSISTENT_SUBSCRIPTION),
+      ...this.metadataAccessor
+        .mapToMetadataWrapper<EventStorePersistentSubscription, EventStorePersistentSubscriptionDescriptor>(
+          this.discoveryService.getProviders(),
+          METADATA_PERSISTENT_SUBSCRIPTION,
+        )
+        .filter(({ instance }) => this.isValidService(instance)),
     );
 
     this.logger.debug(

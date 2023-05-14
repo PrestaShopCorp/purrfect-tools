@@ -18,12 +18,27 @@ export class EventStoreProjectionSubsystemExplorer implements OnModuleInit {
 
   readonly projections: MetadataWrapper<EventStoreProjection, EventStoreProjectionDescriptor>[] = [];
 
+  isValidService(instance: EventStoreProjection) {
+    const hasQuery = 'getQuery' in instance;
+
+    if (!hasQuery) {
+      const serviceName = (instance as unknown).constructor.name;
+      this.logger.warn(
+        `The service '${serviceName}' won't be auto-loaded, '${serviceName}' doesn't implement 'EventStoreProjection' interface properly.`,
+      );
+    }
+
+    return hasQuery;
+  }
+
   onModuleInit() {
     this.projections.push(
-      ...this.metadataAccessor.mapToMetadataWrapper<EventStoreProjection, EventStoreProjectionDescriptor>(
-        this.discoveryService.getProviders(),
-        METADATA_PROJECTION,
-      ),
+      ...this.metadataAccessor
+        .mapToMetadataWrapper<EventStoreProjection, EventStoreProjectionDescriptor>(
+          this.discoveryService.getProviders(),
+          METADATA_PROJECTION,
+        )
+        .filter(({ instance }) => this.isValidService(instance)),
     );
 
     this.logger.debug(
