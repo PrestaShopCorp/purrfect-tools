@@ -6,6 +6,9 @@
     },
     {
       "path": "./event-store/tsconfig.build.json",
+    },
+    {
+      "path": "./event-store-client/tsconfig.build.json",
     }
   ]
 }

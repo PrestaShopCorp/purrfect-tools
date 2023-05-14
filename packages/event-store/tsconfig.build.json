@@ -1,0 +1,20 @@
+{
+  "extends": "../tsconfig.build.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "paths": {
+      "@purrfect-tools/common": ["../common/src"],
+      "@purrfect-tools/event-store-client": ["../event-store-client/src"]
+    }
+  },
+  "references": [
+    {
+      "path": "../common/tsconfig.build.json"
+    },
+    {
+      "path": "../event-store-client/tsconfig.build.json"
+    }
+  ],
+  "exclude": ["node_modules", "dist", "e2e/**/*", "**/*.spec.ts", "jest.config.ts"]
+}
