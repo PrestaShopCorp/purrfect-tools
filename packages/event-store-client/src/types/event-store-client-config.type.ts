@@ -6,7 +6,7 @@ import {
 } from '@eventstore/db-client/dist/Client';
 import { Credentials } from '@eventstore/db-client/dist/types';
 import { EventStoreDBClient } from '@eventstore/db-client';
-import { AnonymousProvider } from '@nestjs-extensions/common';
+import { AnonymousProvider } from '@purrfect-tools/common';
 
 export interface EventStoreExistingClientConfig {
   client: EventStoreDBClient;

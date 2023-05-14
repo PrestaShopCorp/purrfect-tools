@@ -4,7 +4,7 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "paths": {
-      "@nestjs-extensions/common": ["../common/src"]
+      "@purrfect-tools/common": ["../common/src"]
     }
   },
   "references": [
