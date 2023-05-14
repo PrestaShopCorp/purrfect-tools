@@ -40,7 +40,7 @@ describe('::MetadataAccessor', () => {
       .map((instanceWrapper) => metadataAccessor.getClassMetadata<string>(instanceWrapper, TEST_KEY))
       .filter((item) => !!item);
 
-    expect(typeProviders.length).toBe(1);
+    expect(typeProviders).toHaveLength(1);
     expect(typeProviders[0]).toBe(TEST_VALUE);
   });
 
@@ -51,18 +51,18 @@ describe('::MetadataAccessor', () => {
       .map((instanceWrapper) => metadataAccessor.getClassMetadata<object>(instanceWrapper, TEST_OBJECT_KEY))
       .filter((item) => !!item);
 
-    expect(typeProviders.length).toBe(1);
+    expect(typeProviders).toHaveLength(1);
     expect(typeProviders[0]).toEqual(TEST_OBJECT_VALUE);
   });
 
   it('MetadataAccessor::filterByClassMetadata() | Parameter 2 is TEST_KEY', () => {
     const providers = metadataAccessor.filterByClassMetadata(discoveryService.getProviders(), TEST_KEY);
-    expect(providers.length).toBe(1);
+    expect(providers).toHaveLength(1);
   });
 
   it('MetadataAccessor::filterByClassMetadata() | Parameter 2 is TEST_OBJECT_KEY', () => {
     const providers = metadataAccessor.filterByClassMetadata(discoveryService.getProviders(), TEST_OBJECT_KEY);
-    expect(providers.length).toBe(1);
+    expect(providers).toHaveLength(1);
   });
 
   it('MetadataAccessor::mapToMetadataWrapper() | Parameter 2 is TEST_KEY', () => {
@@ -70,7 +70,7 @@ describe('::MetadataAccessor', () => {
       discoveryService.getProviders(),
       TEST_KEY,
     );
-    expect(metadataWrapper.length).toBe(1);
+    expect(metadataWrapper).toHaveLength(1);
     expect(metadataWrapper[0].metadata).toBe(TEST_VALUE);
   });
 
@@ -79,7 +79,7 @@ describe('::MetadataAccessor', () => {
       discoveryService.getProviders(),
       TEST_OBJECT_KEY,
     );
-    expect(metadataWrapper.length).toBe(1);
+    expect(metadataWrapper).toHaveLength(1);
     expect(metadataWrapper[0].metadata).toBe(TEST_OBJECT_VALUE);
   });
 });
