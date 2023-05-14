@@ -48,10 +48,10 @@ describe('services::explorers::EventStoreCatchUpSubscriptionSubsystemExplorer', 
     const catchUpSubscriptions = subsystemExplorer.catchUpSubscriptions;
 
     const { instance: testCatchUpSubscriptionA, metadata: testMetadataA } = catchUpSubscriptions.find(
-      ({ instance, metadata }) => instance instanceof TestServiceA,
+      ({ instance }) => instance instanceof TestServiceA,
     );
     const { instance: testCatchUpSubscriptionB, metadata: testMetadataB } = catchUpSubscriptions.find(
-      ({ instance, metadata }) => instance instanceof TestServiceB,
+      ({ instance }) => instance instanceof TestServiceB,
     );
 
     expect(catchUpSubscriptions).toHaveLength(2);
@@ -65,9 +65,7 @@ describe('services::explorers::EventStoreCatchUpSubscriptionSubsystemExplorer', 
   it('EventStoreProjectionSubsystemExplorer::catchUpSubscriptions filters wrongly implemented services', () => {
     const projections = subsystemExplorer.catchUpSubscriptions;
 
-    const { instance: testProjectionC, metadata: testMetadataC } =
-      projections.find(({ instance }) => instance instanceof TestServiceC) || {};
-
-    expect(testProjectionC).toBeUndefined();
+    const metadataWrapper = projections.find(({ instance }) => instance instanceof TestServiceC);
+    expect(metadataWrapper).toBeUndefined();
   });
 });

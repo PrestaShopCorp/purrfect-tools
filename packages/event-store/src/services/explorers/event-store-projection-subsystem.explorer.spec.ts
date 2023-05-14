@@ -50,8 +50,6 @@ describe('services::explorers::EventStoreProjectionSubsystemExplorer', () => {
     const { instance: testProjectionB, metadata: testMetadataB } = projections.find(
       ({ instance }) => instance instanceof TestServiceB,
     );
-    const { instance: testProjectionC, metadata: testMetadataC } =
-      projections.find(({ instance }) => instance instanceof TestServiceC) || {};
 
     expect(projections).toHaveLength(2);
 
@@ -64,9 +62,7 @@ describe('services::explorers::EventStoreProjectionSubsystemExplorer', () => {
   it('EventStoreProjectionSubsystemExplorer::projections filters wrongly implemented services', () => {
     const projections = subsystemExplorer.projections;
 
-    const { instance: testProjectionC, metadata: testMetadataC } =
-      projections.find(({ instance }) => instance instanceof TestServiceC) || {};
-
-    expect(testProjectionC).toBeUndefined();
+    const metadataWrapper = projections.find(({ instance }) => instance instanceof TestServiceC);
+    expect(metadataWrapper).toBeUndefined();
   });
 });
