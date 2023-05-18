@@ -21,7 +21,6 @@ import {
 } from '../types';
 import { EventStorePersistentSubscriptionSubsystemExplorer } from './explorers/event-store-persistent-subscription-subsystem.explorer';
 
-// TODO: Unit test
 @Injectable()
 export class EventStorePersistentSubscriptionService implements OnApplicationBootstrap {
   private readonly logger = new Logger(EventStorePersistentSubscriptionService.name);

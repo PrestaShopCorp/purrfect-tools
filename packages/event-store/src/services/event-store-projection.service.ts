@@ -6,7 +6,6 @@ import { EVENT_STORE_CLIENT } from '@purrfect-tools/event-store-client';
 import { EventStoreProjectionDescriptor } from '../types';
 import { EventStoreProjectionSubsystemExplorer } from './explorers/event-store-projection-subsystem.explorer';
 
-// TODO: Unit test
 @Injectable()
 export class EventStoreProjectionService implements OnApplicationBootstrap {
   private readonly logger = new Logger(EventStoreProjectionService.name);

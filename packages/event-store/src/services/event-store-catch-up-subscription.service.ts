@@ -15,7 +15,6 @@ import {
 } from '../types';
 import { EventStoreCatchUpSubscriptionSubsystemExplorer } from './explorers/event-store-catch-up-subscription-subsystem.explorer';
 
-// TODO: Unit test
 @Injectable()
 export class EventStoreCatchUpSubscriptionService implements OnApplicationBootstrap {
   private readonly logger = new Logger(EventStoreCatchUpSubscriptionService.name);
@@ -73,6 +72,7 @@ export class EventStoreCatchUpSubscriptionService implements OnApplicationBootst
       await eventHandler(resolvedEvent);
     } catch (e) {
       // TODO: Handle subscription error
+      //  Check how to throw this to an exception filter to prevent a crash in the subscriber.
     }
   }
 
@@ -89,6 +89,8 @@ export class EventStoreCatchUpSubscriptionService implements OnApplicationBootst
       this.handleEventDebug('$all', configuration, readableOptions, resolvedEvent);
       this.handleEvent(handler, resolvedEvent);
     });
+
+    // TODO: Check what happens on subscription disconnection / retry
   }
 
   async loadCatchUpSubscriptionToStream(
@@ -105,5 +107,7 @@ export class EventStoreCatchUpSubscriptionService implements OnApplicationBootst
       this.handleEventDebug(stream, configuration, readableOptions, resolvedEvent);
       this.handleEvent(handler, resolvedEvent);
     });
+
+    // TODO: Check what happens on subscription disconnection / retry
   }
 }

@@ -16,5 +16,5 @@
       "path": "../event-store-client/tsconfig.build.json"
     }
   ],
-  "exclude": ["node_modules", "dist", "e2e/**/*", "**/*.spec.ts", "jest.config.ts"]
+  "exclude": ["node_modules", "dist", "test/**/*", "e2e/**/*", "**/*.spec.ts", "jest.config.ts"]
 }

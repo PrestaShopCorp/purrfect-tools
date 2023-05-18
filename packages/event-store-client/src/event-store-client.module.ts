@@ -6,6 +6,7 @@ import { EVENT_STORE_CLIENT, EVENT_STORE_CONFIG } from './constants';
 import { EventStoreClientConfig, EventStoreClientConfigAsync } from './types';
 
 // TODO: Check a proper way to dispose the connection
+// TODO: Do module functional tests with a EventStore docker image
 const BuildModule = (config: EventStoreClientConfigAsync): DynamicModule => {
   const cfg = fetchProvider(config);
 
