@@ -5,12 +5,16 @@ import { Projection } from './projection.decorator';
 @Projection()
 class TestServiceA {}
 
-const descriptor: EventStoreProjectionDescriptor = {
+const TEST_SERVICE_B_DESCRIPTOR: EventStoreProjectionDescriptor = {
   name: 'test',
 };
 
-@Projection(descriptor)
+@Projection(TEST_SERVICE_B_DESCRIPTOR)
 class TestServiceB {}
+
+const TEST_SERVICE_C_NAME = 'my_projection';
+@Projection(TEST_SERVICE_C_NAME)
+class TestServiceC {}
 
 describe('decorators::Projection()', () => {
   it('Parameter 1 is *undefined*', () => {
@@ -20,6 +24,11 @@ describe('decorators::Projection()', () => {
 
   it('Parameter 1 is *EventStoreProjectionDescriptor*', () => {
     const metadata = Reflect.getMetadata(METADATA_PROJECTION, TestServiceB);
-    expect(metadata).toEqual(descriptor);
+    expect(metadata).toEqual(TEST_SERVICE_B_DESCRIPTOR);
+  });
+
+  it('Parameter 1 is *string*', () => {
+    const metadata = Reflect.getMetadata(METADATA_PROJECTION, TestServiceC);
+    expect(metadata).toEqual({ name: TEST_SERVICE_C_NAME });
   });
 });
