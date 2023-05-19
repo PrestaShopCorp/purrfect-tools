@@ -1,6 +1,6 @@
 {
   "name": "@purrfect-tools/event-store-client",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "",
   "author": "Pedro Pérez Furio <pedrosolid@gmail.com>",
   "scripts": {
@@ -17,7 +17,7 @@
     "@nestjs/common": "^9.4.0",
     "@nestjs/core": "^9.4.0",
     "@nestjs/testing": "^9.4.0",
-    "@purrfect-tools/common": "^0.1.0",
+    "@purrfect-tools/common": "^1.0.0",
     "@types/jest": "^29.5.1",
     "@types/node": "^16.18.14",
     "jest": "^29.5.0",
@@ -29,6 +29,7 @@
     "@eventstore/db-client": ">=5.0.0",
     "@nestjs/common": ">=9.4.0",
     "@nestjs/core": "^9.4.0",
+    "@purrfect-tools/common": ">=1.0.0",
     "reflect-metadata": ">=0.1.13",
     "rxjs": ">=7.0.0"
   },
