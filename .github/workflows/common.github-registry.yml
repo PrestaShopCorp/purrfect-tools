@@ -17,10 +17,13 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-          scope: '@Rzial'
+          scope: '@${ env.GITHUB_REPOSITORY_OWNER }'
       - run: yarn install
       - run: yarn workspace @purrfect-tools/common test
-      - run: echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' >> .npmrc
+      - run: |
+          echo "npmScopes:\n" >> .yarnrc.yml
+          echo "  '@${ env.GITHUB_REPOSITORY_OWNER }':\n" >> .yarnrc.yml
+          echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> .yarnrc.yml
       - run: yarn workspace @purrfect-tools/common npm publish
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
