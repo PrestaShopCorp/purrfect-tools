@@ -19,8 +19,8 @@ jobs:
       - run: yarn install
       - run: yarn workspace @purrfect-tools/event-store-client test
       - run: |
-          echo @lexacode:https://npm.pkg.github.com/ > build/.npmrc
-          echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' >> build/.npmrc
+          echo @Rzial:https://npm.pkg.github.com/ > ./.npmrc
+          echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' >> ./.npmrc
       - run: yarn workspace @purrfect-tools/event-store-client npm publish
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
