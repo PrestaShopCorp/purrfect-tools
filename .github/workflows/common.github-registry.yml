@@ -21,8 +21,8 @@ jobs:
       - run: yarn install
       - run: yarn workspace @purrfect-tools/common test
       - run: |
-          echo "npmScopes:\n" >> .yarnrc.yml
-          echo "  '@Rzial':\n" >> .yarnrc.yml
+          echo "npmScopes:" >> .yarnrc.yml
+          echo "  '@Rzial':" >> .yarnrc.yml
           echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> .yarnrc.yml
       - run: yarn workspace @purrfect-tools/common npm publish
         env:
