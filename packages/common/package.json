@@ -6,7 +6,6 @@
   "scripts": {
     "build": "tsc -b",
     "test": "jest",
-    "test:coverage": "jest",
     "watch": "tsc -b -w"
   },
   "dependencies": {

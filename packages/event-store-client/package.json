@@ -5,8 +5,7 @@
   "author": "Pedro Pérez Furio <pedrosolid@gmail.com>",
   "scripts": {
     "build": "tsc -b",
-    "test": "jest",
-    "test:coverage": "jest",
+    "test": "jest --passWithNoTests",
     "watch": "tsc -b -w"
   },
   "dependencies": {
