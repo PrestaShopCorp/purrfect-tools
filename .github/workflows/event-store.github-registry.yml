@@ -17,16 +17,15 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-          scope: '@Rzial'
       - run: yarn install
       - run: yarn workspace @purrfect-tools/event-store test
       - run: |
-          echo "npmRegistries:" >> .yarnrc.yml
-          echo "  '//npm.pkg.github.com':" >> .yarnrc.yml
-          echo "    npmAuthToken: '${NPM_TOKEN}'" >> .yarnrc.yml
-          echo "npmScopes:" >> .yarnrc.yml
-          echo "  'Rzial':" >> .yarnrc.yml
-          echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> .yarnrc.yml
+          echo "npmScopes:" >> ~/.yarnrc.yml
+          echo "  'purrfect-tools':" >> ~/.yarnrc.yml
+          echo "    npmAlwaysAuth: true" >> ~/.yarnrc.yml
+          echo "    npmAuthToken: '${NPM_TOKEN}'" >> ~/.yarnrc.yml
+          echo "    npmPublishRegistry: 'https://npm.pkg.github.com/'" >> ~/.yarnrc.yml
+          echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> ~/.yarnrc.yml
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: yarn workspace @purrfect-tools/event-store npm publish
