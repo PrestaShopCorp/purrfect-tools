@@ -17,12 +17,12 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-          scope: '@${{ env.GITHUB_REPOSITORY_OWNER }}'
+          scope: '@${{ GITHUB_REPOSITORY_OWNER }}'
       - run: yarn install
       - run: yarn workspace @purrfect-tools/event-store test
       - run: |
           echo "npmScopes:\n" >> .yarnrc.yml
-          echo "  '@${{ env.GITHUB_REPOSITORY_OWNER }}':\n" >> .yarnrc.yml
+          echo "  '@${{ GITHUB_REPOSITORY_OWNER }}':\n" >> .yarnrc.yml
           echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> .yarnrc.yml
       - run: yarn workspace @purrfect-tools/event-store npm publish
         env:
