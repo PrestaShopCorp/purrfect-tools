@@ -27,6 +27,6 @@ jobs:
           echo "npmScopes:" >> .yarnrc.yml
           echo "  'Rzial':" >> .yarnrc.yml
           echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> .yarnrc.yml
-      - run: yarn workspace @purrfect-tools/event-store-client npm publish
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: yarn workspace @purrfect-tools/event-store-client npm publish
