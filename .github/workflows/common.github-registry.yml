@@ -3,7 +3,7 @@ name: "GitHub Registry | @purrfect-tools/common"
 on:
   push:
     tags:
-      - 'common-*'
+      - 'common-v*'
 
 jobs:
   publish:

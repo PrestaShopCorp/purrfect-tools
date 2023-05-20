@@ -3,7 +3,7 @@ name: "GitHub Registry | @purrfect-tools/event-store"
 on:
   push:
     tags:
-      - 'event-store-*'
+      - 'event-store-v*'
 
 jobs:
   publish:
