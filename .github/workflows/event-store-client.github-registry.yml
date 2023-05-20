@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-          scope: '@${ env.GITHUB_REPOSITORY_OWNER }'
+          scope: '@${{ env.GITHUB_REPOSITORY_OWNER }}'
       - run: yarn install
       - run: yarn workspace @purrfect-tools/event-store-client test
       - run: |
