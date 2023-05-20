@@ -22,7 +22,7 @@ jobs:
       - run: yarn workspace @purrfect-tools/event-store-client test
       - run: |
           echo "npmScopes:\n" >> .yarnrc.yml
-          echo "  '@${ env.GITHUB_REPOSITORY_OWNER }':\n" >> .yarnrc.yml
+          echo "  '@${{ env.GITHUB_REPOSITORY_OWNER }}':\n" >> .yarnrc.yml
           echo "    npmRegistryServer: 'https://npm.pkg.github.com/'" >> .yarnrc.yml
       - run: yarn workspace @purrfect-tools/event-store-client npm publish
         env:
