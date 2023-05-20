@@ -9,7 +9,7 @@
 *.sublime-workspace
 
 # Package Manager
-.yarn/
+.yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
