@@ -17,8 +17,8 @@
     "@nestjs/common": "^9.4.0",
     "@nestjs/core": "^9.4.0",
     "@nestjs/testing": "^9.4.0",
-    "@purrfect-tools/common": "^1.0.0",
-    "@purrfect-tools/event-store-client": "^1.0.0",
+    "@purrfect-tools/common": "workspace:^",
+    "@purrfect-tools/event-store-client": "workspace:^",
     "@types/jest": "^29.5.1",
     "@types/node": "^16.18.14",
     "class-transformer": "^0.5.1",
@@ -37,7 +37,9 @@
     "reflect-metadata": ">=0.1.13",
     "rxjs": ">=7.0.0"
   },
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "private": true
+  "types": "dist/index.d.ts"
 }
