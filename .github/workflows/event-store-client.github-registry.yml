@@ -17,7 +17,9 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-      - run: yarn install
+      - run: | 
+          yarn install
+          yarn workspace @purrfect-tools/common build
       - run: yarn workspace @purrfect-tools/event-store-client test
       - run: |
           echo "npmScopes:" >> ~/.yarnrc.yml
