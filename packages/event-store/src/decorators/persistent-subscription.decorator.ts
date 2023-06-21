@@ -13,7 +13,7 @@ export function PersistentSubscription(
   group?: string,
 ): ClassDecorator {
   return applyDecorators(
-    SetMetadata(
+    SetMetadata<typeof METADATA_PERSISTENT_SUBSCRIPTION, EventStorePersistentSubscriptionDescriptor>(
       METADATA_PERSISTENT_SUBSCRIPTION,
       typeof descriptorOrStream === 'string' ? { stream: descriptorOrStream, group } : descriptorOrStream || {},
     ),

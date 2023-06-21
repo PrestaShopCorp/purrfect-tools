@@ -11,7 +11,7 @@ export function CatchUpSubscription(
   descriptorOrStream?: EventStoreCatchUpSubscriptionDescriptor | string,
 ): ClassDecorator {
   return applyDecorators(
-    SetMetadata(
+    SetMetadata<typeof METADATA_CATCH_UP_SUBSCRIPTION, EventStoreCatchUpSubscriptionDescriptor>(
       METADATA_CATCH_UP_SUBSCRIPTION,
       typeof descriptorOrStream === 'string' ? { stream: descriptorOrStream } : descriptorOrStream || {},
     ),
