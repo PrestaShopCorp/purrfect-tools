@@ -85,7 +85,7 @@ export class EventStorePersistentSubscriptionService implements OnApplicationBoo
     handler: EventStorePersistentSubscription | EventStorePersistentSubscription['handleEvent'],
     resolvedEvent: PersistentSubscriptionToAllResolvedEvent | PersistentSubscriptionToStreamResolvedEvent,
   ) {
-    const eventHandler = 'handleEvent' in handler ? handler.handleEvent : handler;
+    const eventHandler = 'handleEvent' in handler ? handler.handleEvent.bind(this) : handler;
 
     let ack = false;
     let nack = false;
@@ -103,6 +103,7 @@ export class EventStorePersistentSubscriptionService implements OnApplicationBoo
         },
       });
     } catch (e) {
+      this.logger.error(e, e.stack);
       // TODO: Define handler error management
       if (ack ? !nack : nack) {
         // TODO: Warning, event not ack or ack and nack at the same time / or promise with ack / nack not returned
@@ -130,7 +131,7 @@ export class EventStorePersistentSubscriptionService implements OnApplicationBoo
       );
     }
 
-    const subscription = await this.client.subscribeToPersistentSubscriptionToAll(group, options);
+    const subscription = this.client.subscribeToPersistentSubscriptionToAll(group, options);
 
     this.subscriptions.push(subscription);
     subscription.on('data', (resolvedEvent) => {
@@ -160,7 +161,7 @@ export class EventStorePersistentSubscriptionService implements OnApplicationBoo
       );
     }
 
-    const subscription = await this.client.subscribeToPersistentSubscriptionToStream(stream, group, options);
+    const subscription = this.client.subscribeToPersistentSubscriptionToStream(stream, group, options);
 
     this.subscriptions.push(subscription);
     subscription.on('data', (resolvedEvent) => {

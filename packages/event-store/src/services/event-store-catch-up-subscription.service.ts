@@ -68,9 +68,10 @@ export class EventStoreCatchUpSubscriptionService implements OnApplicationBootst
     resolvedEvent: AllStreamResolvedEvent | ResolvedEvent,
   ) {
     try {
-      const eventHandler = 'handleEvent' in handler ? handler.handleEvent : handler;
+      const eventHandler = 'handleEvent' in handler ? handler.handleEvent.bind(handler) : handler;
       await eventHandler(resolvedEvent);
     } catch (e) {
+      this.logger.error(e, e.stack);
       // TODO: Handle subscription error
       //  Check how to throw this to an exception filter to prevent a crash in the subscriber.
     }
@@ -82,7 +83,7 @@ export class EventStoreCatchUpSubscriptionService implements OnApplicationBootst
     handler: EventStoreCatchUpSubscription | EventStoreCatchUpSubscription['handleEvent'],
   ) {
     this.logger.debug(`Subscribing to '$all' catch up subscription...`, configuration, readableOptions);
-    const subscription = await this.client.subscribeToAll(configuration, readableOptions);
+    const subscription = this.client.subscribeToAll(configuration, readableOptions);
 
     this.subscriptions.push(subscription);
     subscription.on('data', (resolvedEvent) => {
@@ -100,7 +101,7 @@ export class EventStoreCatchUpSubscriptionService implements OnApplicationBootst
     handler: EventStoreCatchUpSubscription | EventStoreCatchUpSubscription['handleEvent'],
   ) {
     this.logger.debug(`Subscribing to '${stream}' catch up subscription...`, configuration, readableOptions);
-    const subscription = await this.client.subscribeToStream(stream, configuration, readableOptions);
+    const subscription = this.client.subscribeToStream(stream, configuration, readableOptions);
 
     this.subscriptions.push(subscription);
     subscription.on('data', (resolvedEvent) => {
