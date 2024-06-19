@@ -28,7 +28,12 @@ const BuildModule = (connection: EventStoreClientConfigAsync): DynamicModule => 
       EventStoreProjectionSubsystemExplorer,
       EventStoreProjectionService,
     ],
-    exports: [EventStoreClientModule],
+    exports: [
+      EventStoreClientModule,
+      EventStoreCatchUpSubscriptionService,
+      EventStorePersistentSubscriptionService,
+      EventStoreProjectionService,
+    ],
   };
 };
 
