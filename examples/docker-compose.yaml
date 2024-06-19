@@ -1,0 +1,34 @@
+services:
+  eventstore.db:
+    image: eventstore/eventstore:24.2.0-jammy
+    environment:
+      - EVENTSTORE_CLUSTER_SIZE=1
+      - EVENTSTORE_RUN_PROJECTIONS=All
+      - EVENTSTORE_START_STANDARD_PROJECTIONS=true
+      - EVENTSTORE_HTTP_PORT=22113
+      - EVENTSTORE_INSECURE=true
+      - EVENTSTORE_ENABLE_ATOM_PUB_OVER_HTTP=true
+    ports:
+      - "22113:22113"
+    volumes:
+      - type: volume
+        source: eventstore-volume-data
+        target: /var/lib/eventstore
+      - type: volume
+        source: eventstore-volume-logs
+        target: /var/log/eventstore
+    logging:
+      options:
+        max-size: 10m
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    healthcheck:
+      test: curl -f http://localhost:${EVENTSTORE_HTTP_PORT:-22113}/stats || exit 1
+      interval: 10s
+      retries: 3
+
+volumes:
+  eventstore-volume-data:
+  eventstore-volume-logs:
