@@ -8,6 +8,10 @@
     "url": "https://github.com/purrfect-tools/purrfect-tools.git",
     "directory": "packages/event-store-client"
   },
+  "engines": {
+    "npm": ">=9.0.0",
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "build": "tsc -b",
     "test": "jest --passWithNoTests",
