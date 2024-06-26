@@ -28,4 +28,4 @@ jobs:
           echo "    npmRegistryServer: 'https://registry.npmjs.org/'" >> ~/.yarnrc.yml
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: yarn workspace @purrfect-tools/common npm publish
+      - run: yarn workspace @purrfect-tools/common npm publish --access public
