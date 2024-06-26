@@ -3,9 +3,9 @@ import { applyDecorators, SetMetadata } from '@nestjs/common';
 import { METADATA_PROJECTION } from '../constants';
 import { EventStoreProjectionDescriptor } from '../types';
 
-export function Projection();
-export function Projection(descriptor: EventStoreProjectionDescriptor);
-export function Projection(name: string);
+export function Projection(): ClassDecorator;
+export function Projection(descriptor: EventStoreProjectionDescriptor): ClassDecorator;
+export function Projection(name: string): ClassDecorator;
 
 export function Projection(nameOrDescriptor?: EventStoreProjectionDescriptor | string): ClassDecorator {
   return applyDecorators(

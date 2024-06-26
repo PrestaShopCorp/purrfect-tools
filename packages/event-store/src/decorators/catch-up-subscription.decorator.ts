@@ -1,11 +1,16 @@
 import { applyDecorators, SetMetadata } from '@nestjs/common';
 
 import { METADATA_CATCH_UP_SUBSCRIPTION } from '../constants';
-import { EventStoreCatchUpSubscriptionDescriptor } from '../types';
+import {
+  EventStoreCatchUpSubscriptionDescriptor,
+  EventStoreCatchUpSubscriptionToAllDescriptor,
+  EventStoreCatchUpSubscriptionToStreamDescriptor,
+} from '../types';
 
-export function CatchUpSubscription();
-export function CatchUpSubscription(descriptor: EventStoreCatchUpSubscriptionDescriptor);
-export function CatchUpSubscription(stream: string);
+export function CatchUpSubscription(): ClassDecorator;
+export function CatchUpSubscription(descriptor: EventStoreCatchUpSubscriptionToAllDescriptor): ClassDecorator;
+export function CatchUpSubscription(descriptor: EventStoreCatchUpSubscriptionToStreamDescriptor): ClassDecorator;
+export function CatchUpSubscription(stream: string): ClassDecorator;
 
 export function CatchUpSubscription(
   descriptorOrStream?: EventStoreCatchUpSubscriptionDescriptor | string,

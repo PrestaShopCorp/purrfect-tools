@@ -2,5 +2,5 @@ import { CreateProjectionOptions, UpdateProjectionOptions } from '@eventstore/db
 
 export interface EventStoreProjectionDescriptor {
   name?: string;
-  configuration?: CreateProjectionOptions | UpdateProjectionOptions;
+  configuration?: CreateProjectionOptions & UpdateProjectionOptions;
 }

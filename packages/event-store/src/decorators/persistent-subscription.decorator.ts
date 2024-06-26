@@ -1,12 +1,17 @@
 import { applyDecorators, SetMetadata } from '@nestjs/common';
 
 import { METADATA_PERSISTENT_SUBSCRIPTION } from '../constants';
-import { EventStorePersistentSubscriptionDescriptor } from '../types';
+import {
+  EventStorePersistentSubscriptionDescriptor,
+  EventStorePersistentSubscriptionToAllDescriptor,
+  EventStorePersistentSubscriptionToStreamDescriptor,
+} from '../types';
 
-export function PersistentSubscription();
-export function PersistentSubscription(descriptor: EventStorePersistentSubscriptionDescriptor);
-export function PersistentSubscription(stream: string);
-export function PersistentSubscription(stream: string, group: string);
+export function PersistentSubscription(): ClassDecorator;
+export function PersistentSubscription(descriptor: EventStorePersistentSubscriptionToAllDescriptor): ClassDecorator;
+export function PersistentSubscription(descriptor: EventStorePersistentSubscriptionToStreamDescriptor): ClassDecorator;
+export function PersistentSubscription(stream: string): ClassDecorator;
+export function PersistentSubscription(stream: string, group: string): ClassDecorator;
 
 export function PersistentSubscription(
   descriptorOrStream?: EventStorePersistentSubscriptionDescriptor | string,
