@@ -1,4 +1,4 @@
-name: "GitHub Registry | @purrfect-tools/event-store"
+name: "NPM Registry | @purrfect-tools/event-store"
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: "GitHub Registry | @purrfect-tools/common"
+name: "NPM Registry | @purrfect-tools/common"
 
 on:
   push:
