@@ -90,8 +90,8 @@ describe('services::EventStorePersistentSubscriptionService', () => {
 
     await moduleRef.init();
 
-    const subscriberA: EventStoreSubscriberMock = await subscribeToPersistentSubscriptionToAll.mock.results[0].value;
-    const subscriberB: EventStoreSubscriberMock = await subscribeToPersistentSubscriptionToStream.mock.results[0].value;
+    const subscriberA: EventStoreSubscriberMock = subscribeToPersistentSubscriptionToAll.mock.results[0].value;
+    const subscriberB: EventStoreSubscriberMock = subscribeToPersistentSubscriptionToStream.mock.results[0].value;
 
     expect(getPersistentSubscriptionToAllInfo).toHaveBeenCalledTimes(1);
     expect(getPersistentSubscriptionToAllInfo).toHaveBeenCalledWith(aGroup);
@@ -142,8 +142,8 @@ describe('services::EventStorePersistentSubscriptionService', () => {
       subscribeToPersistentSubscriptionToStream,
     } = eventStoreClientMock;
 
-    const subscriberA: EventStoreSubscriberMock = await subscribeToPersistentSubscriptionToAll.mock.results[0].value;
-    const subscriberB: EventStoreSubscriberMock = await subscribeToPersistentSubscriptionToStream.mock.results[0].value;
+    const subscriberA: EventStoreSubscriberMock = subscribeToPersistentSubscriptionToAll.mock.results[0].value;
+    const subscriberB: EventStoreSubscriberMock = subscribeToPersistentSubscriptionToStream.mock.results[0].value;
 
     expect(getPersistentSubscriptionToAllInfo).toHaveBeenCalledTimes(1);
     expect(getPersistentSubscriptionToAllInfo).toHaveBeenCalledWith(aGroup);
@@ -169,10 +169,10 @@ describe('services::EventStorePersistentSubscriptionService', () => {
 
     await moduleRef.init();
 
-    const pSubscriberA: EventStoreSubscriberMock = await subscribeToPSToAll.mock.results[0].value;
+    const pSubscriberA: EventStoreSubscriberMock = subscribeToPSToAll.mock.results[0].value;
     const pHandlerA = pSubscriberA.on.mock.calls[0][1];
 
-    const pSubscriberB: EventStoreSubscriberMock = await subscribeToPSToStream.mock.results[0].value;
+    const pSubscriberB: EventStoreSubscriberMock = subscribeToPSToStream.mock.results[0].value;
     const pHandlerB = pSubscriberB.on.mock.calls[0][1];
 
     const aInput: AcknowledgeableEvent = buildAcknowledgeableEventFixture('test_stream', 'testA');

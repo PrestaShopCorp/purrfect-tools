@@ -71,8 +71,8 @@ describe('services::EventStoreCatchUpSubscriptionService', () => {
 
     await moduleRef.init();
 
-    const subscriberA: EventStoreSubscriberMock = await eventStoreClientMock.subscribeToAll.mock.results[0].value;
-    const subscriberB: EventStoreSubscriberMock = await eventStoreClientMock.subscribeToStream.mock.results[0].value;
+    const subscriberA: EventStoreSubscriberMock = eventStoreClientMock.subscribeToAll.mock.results[0].value;
+    const subscriberB: EventStoreSubscriberMock = eventStoreClientMock.subscribeToStream.mock.results[0].value;
 
     expect(eventStoreClientMock.subscribeToAll).toHaveBeenCalledTimes(1);
     expect(eventStoreClientMock.subscribeToAll).toHaveBeenCalledWith(undefined, undefined);
@@ -87,10 +87,10 @@ describe('services::EventStoreCatchUpSubscriptionService', () => {
   it('EventStoreCatchUpSubscriptionService::subscriptions handlers are called', async () => {
     await moduleRef.init();
 
-    const subscriberA: EventStoreSubscriberMock = await eventStoreClientMock.subscribeToAll.mock.results[0].value;
+    const subscriberA: EventStoreSubscriberMock = eventStoreClientMock.subscribeToAll.mock.results[0].value;
     const handlerA = subscriberA.on.mock.calls[0][1];
 
-    const subscriberB: EventStoreSubscriberMock = await eventStoreClientMock.subscribeToStream.mock.results[0].value;
+    const subscriberB: EventStoreSubscriberMock = eventStoreClientMock.subscribeToStream.mock.results[0].value;
     const handlerB = subscriberB.on.mock.calls[0][1];
 
     const aInput: ResolvedEvent = buildResolvedEventFixture('test_stream', 'testA');
