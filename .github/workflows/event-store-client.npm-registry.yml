@@ -21,6 +21,13 @@ jobs:
           yarn install
           yarn workspace @purrfect-tools/common build
       - run: yarn workspace @purrfect-tools/event-store-client test
-      - run: yarn workspace @purrfect-tools/event-store-client npm publish
+      - run: |
+          echo "npmScopes:" >> ~/.yarnrc.yml
+          echo "  'purrfect-tools':" >> ~/.yarnrc.yml
+          echo "    npmAlwaysAuth: true" >> ~/.yarnrc.yml
+          echo "    npmAuthToken: '${NPM_TOKEN}'" >> ~/.yarnrc.yml
+          echo "    npmPublishRegistry: 'https://registry.npmjs.org/'" >> ~/.yarnrc.yml
+          echo "    npmRegistryServer: 'https://registry.npmjs.org/'" >> ~/.yarnrc.yml
         env:
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn workspace @purrfect-tools/event-store-client npm publish

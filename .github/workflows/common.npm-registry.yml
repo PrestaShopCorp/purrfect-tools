@@ -19,6 +19,13 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: yarn install
       - run: yarn workspace @purrfect-tools/common test
-      - run: yarn workspace @purrfect-tools/common npm publish
+      - run: |
+          echo "npmScopes:" >> ~/.yarnrc.yml
+          echo "  'purrfect-tools':" >> ~/.yarnrc.yml
+          echo "    npmAlwaysAuth: true" >> ~/.yarnrc.yml
+          echo "    npmAuthToken: '${NPM_TOKEN}'" >> ~/.yarnrc.yml
+          echo "    npmPublishRegistry: 'https://registry.npmjs.org/'" >> ~/.yarnrc.yml
+          echo "    npmRegistryServer: 'https://registry.npmjs.org/'" >> ~/.yarnrc.yml
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn workspace @purrfect-tools/common npm publish
