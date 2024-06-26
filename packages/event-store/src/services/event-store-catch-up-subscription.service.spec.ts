@@ -80,8 +80,8 @@ describe('services::EventStoreCatchUpSubscriptionService', () => {
     expect(eventStoreClientMock.subscribeToStream).toHaveBeenCalledTimes(1);
     expect(eventStoreClientMock.subscribeToStream).toHaveBeenCalledWith(bStream, bConfiguration, bReadableOptions);
 
-    expect(subscriberA.on).toHaveBeenCalledTimes(1);
-    expect(subscriberB.on).toHaveBeenCalledTimes(1);
+    expect(subscriberA.on).toHaveBeenCalledTimes(2);
+    expect(subscriberB.on).toHaveBeenCalledTimes(2);
   });
 
   it('EventStoreCatchUpSubscriptionService::subscriptions handlers are called', async () => {

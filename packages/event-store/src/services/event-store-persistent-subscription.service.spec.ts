@@ -104,7 +104,7 @@ describe('services::EventStorePersistentSubscriptionService', () => {
     );
 
     expect(subscribeToPersistentSubscriptionToAll).toHaveBeenCalledTimes(1);
-    expect(subscriberA.on).toHaveBeenCalledTimes(1);
+    expect(subscriberA.on).toHaveBeenCalledTimes(2);
 
     expect(getPersistentSubscriptionToStreamInfo).toHaveBeenCalledTimes(1);
     expect(getPersistentSubscriptionToStreamInfo).toHaveBeenCalledWith(bStream, bGroup);
@@ -121,7 +121,7 @@ describe('services::EventStorePersistentSubscriptionService', () => {
     );
 
     expect(subscribeToPersistentSubscriptionToStream).toHaveBeenCalledTimes(1);
-    expect(subscriberB.on).toHaveBeenCalledTimes(1);
+    expect(subscriberB.on).toHaveBeenCalledTimes(2);
   });
 
   it('EventStorePersistentSubscriptionService::onApplicationBootstrap() modifies existing persistent subscription services', async () => {
@@ -157,8 +157,8 @@ describe('services::EventStorePersistentSubscriptionService', () => {
     expect(subscribeToPersistentSubscriptionToAll).toHaveBeenCalledTimes(1);
     expect(subscribeToPersistentSubscriptionToStream).toHaveBeenCalledTimes(1);
 
-    expect(subscriberA.on).toHaveBeenCalledTimes(1);
-    expect(subscriberB.on).toHaveBeenCalledTimes(1);
+    expect(subscriberA.on).toHaveBeenCalledTimes(2);
+    expect(subscriberB.on).toHaveBeenCalledTimes(2);
   });
 
   it('EventStorePersistentSubscriptionService::onApplicationBootstrap() handlers are called', async () => {
