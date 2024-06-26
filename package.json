@@ -28,6 +28,5 @@
     "examples/*",
     "packages/*"
   ],
-  "private": true,
   "packageManager": "yarn@4.3.1"
 }

@@ -1,0 +1,27 @@
+name: "GitHub Registry | @purrfect-tools/event-store"
+
+on:
+  push:
+    tags:
+      - 'event-store-v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+      - run: |
+          yarn install
+          yarn workspace @purrfect-tools/common build
+          yarn workspace @purrfect-tools/event-store-client build
+      - run: yarn workspace @purrfect-tools/event-store test
+      - run: yarn workspace @purrfect-tools/event-store npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
