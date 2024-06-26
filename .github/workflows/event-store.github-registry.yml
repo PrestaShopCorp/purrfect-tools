@@ -22,6 +22,7 @@ jobs:
           yarn workspace @purrfect-tools/common build
           yarn workspace @purrfect-tools/event-store-client build
       - run: yarn workspace @purrfect-tools/event-store test
+      - run: yarn workspace @purrfect-tools/event-store build
       - run: |
           echo "npmScopes:" >> ~/.yarnrc.yml
           echo "  'purrfect-tools':" >> ~/.yarnrc.yml

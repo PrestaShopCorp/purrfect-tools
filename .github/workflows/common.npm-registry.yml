@@ -19,6 +19,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: yarn install
       - run: yarn workspace @purrfect-tools/common test
+      - run: yarn workspace @purrfect-tools/common build
       - run: |
           echo "npmScopes:" >> ~/.yarnrc.yml
           echo "  'purrfect-tools':" >> ~/.yarnrc.yml
